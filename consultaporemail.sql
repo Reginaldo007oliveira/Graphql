@@ -1,0 +1,6 @@
+query{
+       users {
+email
+
+    }
+  }
