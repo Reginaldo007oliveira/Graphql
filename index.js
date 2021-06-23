@@ -3,14 +3,46 @@ const {ApolloServer, gql} = require('apollo-server');
 // Toda request bate no MESMO endpoint (/graphql)
 //Query -> Obter informações (GET)
 // Mutation Types - Strings, Int, Boolean, Float e ID
+/** 
+ query{
+     posts{
+         title
+         author{
+             name
+             email
+             active
+         }
+     }
+ }
+*/
 const typeDefs = gql`
+type User {
+    id: ID!
+    name: String! 
+    email: String!
+    active: Boolean!
+}
+type Post {
+    id: ID!
+    title: String! 
+    content: String!
+    author: User!
+}
 type Query{
     hello: String 
-}
+    users: [User!]!
+} 
 `;
 const resolvers = {
     Query: {
-        hello: () => 'Hello world'
+        hello: () => 'Hello world',
+        users: () => [
+            
+{id: String(Math.random()), name: 'Matheus',  email:'contato@gmail.com',  active: true},
+{id: String(Math.random()), name: 'Matheus2', email:'contato@gmail2.com', active: false},
+{id: String(Math.random()), name: 'Matheus3', email:'contato@gmail3.com', active: true},
+        
+    ],
     }
 };
 
