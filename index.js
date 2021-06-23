@@ -31,18 +31,27 @@ type Post {
 type Query{
     hello: String 
     users: [User!]!
+    getUserByEmail(email: String!): User!
+   
 } 
+
 `;
+
+const users = [
+            
+    {id: String(Math.random()), name: 'Matheus',  email:'contato@gmail.com',  active: true},
+    {id: String(Math.random()), name: 'Matheus2', email:'contato@gmail2.com', active: false},
+    {id: String(Math.random()), name: 'Matheus3', email:'contato@gmail3.com', active: true},
+            ];
+
 const resolvers = {
     Query: {
         hello: () => 'Hello world',
-        users: () => [
-            
-{id: String(Math.random()), name: 'Matheus',  email:'contato@gmail.com',  active: true},
-{id: String(Math.random()), name: 'Matheus2', email:'contato@gmail2.com', active: false},
-{id: String(Math.random()), name: 'Matheus3', email:'contato@gmail3.com', active: true},
-        
-    ],
+        users: () => users,
+        getUserByEmail: (_, args) => {
+return users.find((user)=> user.email === args.email);
+        },
+       
     }
 };
 
