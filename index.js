@@ -35,6 +35,10 @@ type Query{
    
 } 
 
+type Mutation{
+    createUser(name:String!, email: String!): User!
+}
+
 `;
 
 const users = [
@@ -52,7 +56,21 @@ const resolvers = {
 return users.find((user)=> user.email === args.email);
         },
        
-    }
+    },
+    Mutation: {
+createUser: (_, args) => {
+    const newUser = {
+        id: String(Math.random()),
+        name: args.name,
+        email: args.email,
+        active: true,
+
+    };
+    users.push(newUser);
+    return newUser;
+
+}
+    },
 };
 
 const server = new ApolloServer({typeDefs, resolvers});
