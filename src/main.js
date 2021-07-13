@@ -6,7 +6,13 @@ const server = createServer((request, response) => {
       response.writeHead(200);
       response.write("okay");
       response.end();
-      return;
+      break;
+    }
+
+    default: {
+      response.writeHead(404, "Service not found");
+
+      response.end();
     }
   }
 });
