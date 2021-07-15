@@ -40,17 +40,34 @@ const server = createServer((request, response) => {
     //redirecionar para a area de rota
     // let data string vazia .. chunk vai somar ao data
 
+    case "/home": {
+      const path = resolve(__dirname, "./pages/home.html");
+      readFile(path, (error, file) => {
+        if (error) {
+          response.writeHead(500, "Can't process HTML FILE");
+          response.end();
+          return;
+        }
+        response.writeHead(200);
+        response.write(file);
+        response.end();
+      });
+      break;
+    }
+
     case "/authenticate": {
       let data = "";
       request.on("data", (chunk) => {
         data += chunk;
       });
       request.on("end", () => {
-        console.log(parse(data));
-        response.writeHead(200);
-        response.write(file);
+        const params = parse(data);
+        response.writeHead(301, {
+          Location: "/home",
+        });
         response.end();
       });
+
       break;
     }
 
