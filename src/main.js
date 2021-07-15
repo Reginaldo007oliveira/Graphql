@@ -10,8 +10,14 @@ import { createServer } from "http";
 const server = createServer((request, response) => {
   switch (request.url) {
     case "/status": {
-      response.writeHead(200);
-      response.write("okay");
+      response.writeHead(200, {
+        "Content-Type": "application/json",
+      });
+      response.write(
+        JSON.stringify({
+          status: "É nois",
+        })
+      );
       response.end();
       break;
     }
