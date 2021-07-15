@@ -5,10 +5,12 @@
 //   default retorna qualquer coisa que não seja status
 //PORT=3000 npm run start para rodar na porta 3000
 //até aqui está rodando na porta 3 mil http://127.0.0.1:3000/status se não for status então cai no default 404
+//até aqui foi encodado com querystring
 
 import { createServer } from "http";
 import { readFile } from "fs";
 import { resolve } from "path";
+
 const server = createServer((request, response) => {
   switch (request.url) {
     case "/status": {
@@ -33,8 +35,20 @@ const server = createServer((request, response) => {
       });
       break;
     }
+    //padrão de eventos data é um evento que le os pedaços do buffer de dados
+    //redirecionar para a area de rota
+    // let data string vazia .. chunk vai somar ao data
 
     case "/authenticate": {
+      let data = "";
+      request.on("data", (chunk) => {
+        data += chunk;
+      });
+      request.on("end", () => {
+        response.writeHead(200);
+        response.write(file);
+        response.end();
+      });
       break;
     }
 
