@@ -10,6 +10,7 @@
 import { createServer } from "http";
 import { readFile } from "fs";
 import { resolve } from "path";
+import { parse } from "querystring";
 
 const server = createServer((request, response) => {
   switch (request.url) {
@@ -45,6 +46,7 @@ const server = createServer((request, response) => {
         data += chunk;
       });
       request.on("end", () => {
+        console.log(parse(data));
         response.writeHead(200);
         response.write(file);
         response.end();
