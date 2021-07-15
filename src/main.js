@@ -7,18 +7,34 @@
 //até aqui está rodando na porta 3 mil http://127.0.0.1:3000/status se não for status então cai no default 404
 
 import { createServer } from "http";
+import { readFile } from "fs";
+import { resolve } from "path";
 const server = createServer((request, response) => {
   switch (request.url) {
     case "/status": {
-      response.writeHead(200, {
-        "Content-Type": "application/json",
-      });
-      response.write(
-        JSON.stringify({
-          status: "É nois",
-        })
-      );
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.write(JSON.stringify({ status: "É nois" }));
       response.end();
+      break;
+    }
+
+    case "/sign-in": {
+      const path = resolve(__dirname, "./pages/sign-in.html");
+
+      readFile(path, (error, file) => {
+        if (error) {
+          response.writeHead(500, "Can't process HTML FILE");
+          response.end();
+          return;
+        }
+        response.writeHead(200);
+        response.write(file);
+        response.end();
+      });
+      break;
+    }
+
+    case "/authenticate": {
       break;
     }
 
