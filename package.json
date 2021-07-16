@@ -1,16 +1,19 @@
 {
-  "name": "client-server-exemple",
+  "name": "@dev-demands/server",
   "version": "1.0.0",
-  "private": true,
   "description": "",
-  "main": "src/main.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " node -r esm . "
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reginaldo007oliveira/Graphql.git"
   },
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "esm": "^3.2.25"
-  }
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Reginaldo007oliveira/Graphql/issues"
+  },
+  "homepage": "https://github.com/Reginaldo007oliveira/Graphql#readme"
 }
