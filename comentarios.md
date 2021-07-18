@@ -27,3 +27,8 @@ dentro de scripts .. colocar start: "node -r esm ." o ponto define um caminho pa
 
 ####### PACOTE COM REACT ROUTER DOM ############
 pnpm i react-router-dom --filter @dev-demands/web isso faz a instalação do react acontecer por filtro escolhendo a pasta que vai o projeto
+
+### MUDANDO O SERVER PARA EXPRESS
+
+pnpm i express --filter @dev-demands/server instala o expres na pasta server
+miders ... manipulam os parametros que estão vindo e as respostas
