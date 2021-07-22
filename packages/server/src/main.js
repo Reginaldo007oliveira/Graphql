@@ -21,7 +21,7 @@ async function startApolloServer() {
     bodyParserConfig: true,
   });
 
-  const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT) : 7000;
   const HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
 
   // await server.listen(PORT, HOSTNAME, () => {

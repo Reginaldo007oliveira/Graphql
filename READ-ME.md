@@ -20,3 +20,35 @@ pnpm i apollo-server-express@2.17.0 graphql --filter @dev-demands/server
 }
 
 ## main para rodar o playground
+
+query GET_CLIENT($clientID: ID!) {
+client(id: $clientID) {
+id
+name
+email
+
+}
+
+clients{
+items{
+name
+email
+
+    }
+
+}
+}
+
+## Exmplo de mutation
+
+mutation{
+createClient(input:{
+name:"Naldossdfsf",
+email:"vibes@longboards.com"
+}){
+id
+name
+email
+
+}
+}

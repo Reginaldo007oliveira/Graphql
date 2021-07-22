@@ -3,7 +3,7 @@ import { readFile, writeFile } from "fs";
 import { resolve } from "path";
 
 function createRepository(name) {
-  const path = resolve(__dirname, `../../data/${name}.json`);
+  const path = resolve(__dirname, `../../../data/${name}.json`);
 
   return {
     read: () =>
